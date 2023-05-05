@@ -43,7 +43,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     private fun handleUiState(action: RegisterActions) {
         when (action) {
             is RegisterActions.Success -> {
-                Log.e("success", "handleUiState: " + action.inserted)
+
             }
         }
     }
