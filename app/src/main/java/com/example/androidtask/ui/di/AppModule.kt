@@ -20,29 +20,29 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val localHttpLoggingInterceptor = HttpLoggingInterceptor()
-        localHttpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-        return localHttpLoggingInterceptor
-    }
-
-    @Provides
-    fun provideOkHttpClient(
-        interceptor: HttpLoggingInterceptor
-    ): OkHttpClient =
-        OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
-            .addInterceptor { chain ->
-                val original: Request = chain.request()
-                val builder: Request.Builder = original.newBuilder()
-                return@addInterceptor chain.proceed(builder.build())
-            }
-            .build()
+//    @Provides
+//    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+//        val localHttpLoggingInterceptor = HttpLoggingInterceptor()
+//        localHttpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//
+//        return localHttpLoggingInterceptor
+//    }
+//
+//    @Provides
+//    fun provideOkHttpClient(
+//        interceptor: HttpLoggingInterceptor
+//    ): OkHttpClient =
+//        OkHttpClient.Builder()
+//            .connectTimeout(30, TimeUnit.SECONDS)
+//            .writeTimeout(30, TimeUnit.SECONDS)
+//            .readTimeout(30, TimeUnit.SECONDS)
+//            .addInterceptor(interceptor)
+//            .addInterceptor { chain ->
+//                val original: Request = chain.request()
+//                val builder: Request.Builder = original.newBuilder()
+//                return@addInterceptor chain.proceed(builder.build())
+//            }
+//            .build()
 
 //    @Provides
 //    fun providesApiService(okHttpClient: OkHttpClient): ApiService =

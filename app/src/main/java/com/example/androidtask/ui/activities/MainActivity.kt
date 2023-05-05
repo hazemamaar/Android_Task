@@ -1,4 +1,4 @@
-package com.example.androidtask.ui.activites
+package com.example.androidtask.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
