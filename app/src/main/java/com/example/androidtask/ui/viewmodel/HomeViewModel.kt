@@ -25,18 +25,12 @@ class HomeViewModel @Inject constructor(private val getProblemsUseCase: GetProbl
         getProblemsUseCase(viewModelScope) {
             when (it) {
                 is Resource.Failure -> {
-                    Log.e("failure", "handleUiState: " + it.message)
-
                 }
 
                 is Resource.Progress -> {
-                    Log.e("loading", "handleUiState: " + it.loading)
-
-
                 }
 
                 is Resource.Success -> {
-                    Log.e("success", "handleUiState: " + it.data.problems.toString())
                     produce(HomeActions.Success(it.data))
 
                 }

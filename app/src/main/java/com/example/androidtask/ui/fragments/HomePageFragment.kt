@@ -3,6 +3,7 @@ package com.example.androidtask.ui.fragments
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidtask.databinding.FragmentHomePageBinding
 import com.example.androidtask.ui.adapters.MedicationListAdapter
@@ -18,18 +19,18 @@ import javax.inject.Inject
 class HomePageFragment : BaseFragment<FragmentHomePageBinding,HomeViewModel>() {
     @Inject
     lateinit var medicationListAdapter: MedicationListAdapter
-
+    private val args :HomePageFragmentArgs by navArgs()
     override fun onFragmentReady() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
-
-        val greetingMessage = when (currentTime()) {
+        val localtime = when (currentTime()) {
             in 0..11 -> "Good Morning"
             in 12..16 -> "Good Afternoon"
             else -> "Good Evening"
         }
 
-        binding.greetingTextView.text = greetingMessage
+        binding.localtimeTextView.text = "welcome $localtime"
+        binding.greetingTextView.text = args.userModel.name
         mViewModel.getProblems()
         subscribeToObservers()
     }
@@ -47,7 +48,6 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding,HomeViewModel>() {
     private fun handleUiState(action: HomeActions) {
         when (action) {
             is HomeActions.Success -> {
-                Log.e("hhaz", "handleUiState:${action.responseObject.problems[0].Diabetes[0].medications[0].medicationsClasses[0].className[0].associatedDrug} ", )
                 binding.recyclerView.apply {
                     medicationListAdapter.medicationList = action.responseObject.problems[0].Diabetes[0].medications[0].medicationsClasses[0].className[0].associatedDrug
                     adapter = medicationListAdapter

@@ -39,6 +39,8 @@ class LoginViewModel @Inject constructor(private val getUserUseCase: GetUserUseC
                     Log.e("success", "handleUiState: " + it.data.password)
                     produce(LoginActions.Success(it.data))
                 }
+
+                else -> {}
             }
         }
 

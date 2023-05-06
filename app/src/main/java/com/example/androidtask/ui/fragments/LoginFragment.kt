@@ -3,6 +3,7 @@ package com.example.androidtask.ui.fragments
 import android.util.Log
 import androidx.fragment.app.viewModels
 import com.example.androidtask.R
+import com.example.androidtask.data.local.models.RegisterModel
 import com.example.androidtask.databinding.FragmentLoginBinding
 import com.example.androidtask.ui.viewmodel.LoginActions
 import com.example.androidtask.ui.viewmodel.LoginViewModel
@@ -34,7 +35,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     private fun handleUiState(action: LoginActions) {
         when (action) {
             is LoginActions.Success -> {
-               navigateSafe(R.id.action_loginFragment_to_homePageFragment, container = R.id.frag_host)
+                val user:RegisterModel =action.userModel
+                Log.e("hhhhh", "handleUiState:$user ", )
+               navigateSafe(LoginFragmentDirections.actionLoginFragmentToHomePageFragment(userModel = user), container = R.id.frag_host)
             }
 
             is LoginActions.Failure ->{
