@@ -18,5 +18,14 @@
         android:id="@+id/loginFragment"
         android:name="com.example.androidtask.ui.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.androidtask.ui.fragments.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
 </navigation>
