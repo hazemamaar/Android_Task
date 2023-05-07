@@ -1,10 +1,13 @@
 package com.example.androidtask.ui.fragments
 
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidtask.R
 import com.example.androidtask.android.base.android.BaseFragment
+import com.example.androidtask.android.extentions.navigateSafe
 import com.example.androidtask.android.extentions.observe
 import com.example.androidtask.databinding.FragmentHomePageBinding
 import com.example.androidtask.ui.adapters.MedicationListAdapter
@@ -32,6 +35,9 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding, HomeViewModel>() 
         binding.greetingTextView.text = args.userModel.name
         mViewModel.getProblems()
         subscribeToObservers()
+        medicationListAdapter.setOnItemClickListener {
+            navigateSafe(HomePageFragmentDirections.actionHomePageFragmentToDetailsFragment(it), container = R.id.frag_host)
+        }
     }
 
     override val mViewModel: HomeViewModel by viewModels()
@@ -48,9 +54,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding, HomeViewModel>() 
     private fun handleUiState(action: HomeActions) {
         when (action) {
             is HomeActions.Success -> {
+                Log.e("xxx", "handleUiState: ${action.medical}", )
                 binding.recyclerView.apply {
                     medicationListAdapter.medicationList =
-                        action.responseObject.problems[0].Diabetes[0].medications[0].medicationsClasses[0].className[0].associatedDrug
+                        action.medical
                     adapter = medicationListAdapter
                     layoutManager = LinearLayoutManager(context)
                 }

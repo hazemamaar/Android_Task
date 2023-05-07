@@ -1,12 +1,12 @@
 package com.example.data.network
 
-import com.example.data.network.models.ResponseObject
+import com.example.data.network.models.Medical
 import retrofit2.http.GET
 
 interface ApiService {
     companion object{
-        const val PROBLEMS="5bc76f33-0f61-4d82-9f39-70ae9875232d"
+        const val PROBLEMS="6a585024-847b-40e1-8250-7998ccdcee98"
     }
     @GET(PROBLEMS)
-    suspend fun getProblems(): ResponseObject
+    suspend fun getProblems(): Medical
 }

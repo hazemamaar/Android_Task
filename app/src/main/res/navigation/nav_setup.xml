@@ -31,5 +31,16 @@
         <argument
             android:name="userModel"
             app:argType="com.example.data.local.models.RegisterModel" />
+        <action
+            android:id="@+id/action_homePageFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.androidtask.ui.fragments.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="medication"
+            app:argType="com.example.data.network.models.Medication" />
     </fragment>
 </navigation>

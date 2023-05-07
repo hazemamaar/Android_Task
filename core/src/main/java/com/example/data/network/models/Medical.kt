@@ -1,6 +1,5 @@
 package com.example.data.network.models
 
-data class Diabetes(
-    val labs: List<Lab>,
+data class Medical(
     val medications: List<Medication>
 )
