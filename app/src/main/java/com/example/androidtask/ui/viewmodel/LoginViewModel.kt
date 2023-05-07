@@ -2,14 +2,12 @@ package com.example.androidtask.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.androidtask.data.local.models.RegisterModel
-import com.example.androidtask.domain.usecase.GetUserUseCase
-import com.example.core.base.android.Action
-import com.example.core.base.android.BaseViewModel
+import com.example.data.local.models.RegisterModel
+import com.example.features.user.domain.interactors.GetUserUseCase
+import com.example.androidtask.android.base.android.Action
+import com.example.androidtask.android.base.android.BaseViewModel
 import com.example.core.response.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 

@@ -1,25 +1,24 @@
 package com.example.androidtask.ui.fragments
 
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidtask.android.base.android.BaseFragment
+import com.example.androidtask.android.extentions.observe
 import com.example.androidtask.databinding.FragmentHomePageBinding
 import com.example.androidtask.ui.adapters.MedicationListAdapter
 import com.example.androidtask.ui.viewmodel.HomeActions
 import com.example.androidtask.ui.viewmodel.HomeViewModel
-import com.example.core.base.android.BaseFragment
-import com.example.core.extentions.observe
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomePageFragment : BaseFragment<FragmentHomePageBinding,HomeViewModel>() {
+class HomePageFragment : BaseFragment<FragmentHomePageBinding, HomeViewModel>() {
     @Inject
     lateinit var medicationListAdapter: MedicationListAdapter
-    private val args :HomePageFragmentArgs by navArgs()
+    private val args: HomePageFragmentArgs by navArgs()
     override fun onFragmentReady() {
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
@@ -45,19 +44,22 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding,HomeViewModel>() {
             }
         }
     }
+
     private fun handleUiState(action: HomeActions) {
         when (action) {
             is HomeActions.Success -> {
                 binding.recyclerView.apply {
-                    medicationListAdapter.medicationList = action.responseObject.problems[0].Diabetes[0].medications[0].medicationsClasses[0].className[0].associatedDrug
+                    medicationListAdapter.medicationList =
+                        action.responseObject.problems[0].Diabetes[0].medications[0].medicationsClasses[0].className[0].associatedDrug
                     adapter = medicationListAdapter
                     layoutManager = LinearLayoutManager(context)
                 }
             }
 
-            is HomeActions.Failure ->{
+            is HomeActions.Failure -> {
 
             }
+
             HomeActions.Loading -> {
             }
         }

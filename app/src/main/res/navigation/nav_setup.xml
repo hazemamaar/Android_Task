@@ -30,6 +30,6 @@
         tools:layout="@layout/fragment_home_page" >
         <argument
             android:name="userModel"
-            app:argType="com.example.androidtask.data.local.models.RegisterModel" />
+            app:argType="com.example.data.local.models.RegisterModel" />
     </fragment>
 </navigation>
